@@ -1,0 +1,94 @@
+<div class="p-5 text-center bgtop ">
+      <h1>ATN Store </h1>
+      <p>Mua sắm online tiết kiệm hơn với ATN</p>
+    </div>
+       <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand logo" href="/index">
+                <img width="70px" height="70px" border-radius="50%" src="/images/IMG_2622.JPG" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase " href="/cars">Cartoy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase " href="/gundams">Gundam</a>
+                    </li>
+                </ul>
+                <div class="dropdown">
+                    <button class="dropbtn text-uppercase ">ADMIN</button>
+                    <div class="dropdown-content">
+                        <a href="/cars/list">Car List</a>
+                        <a href="/gundams/list">Gundam List</a>
+                    </div>
+                </div>
+                <form class="d-flex ml-auto" action="/search" method="post">
+                    <input class="form-control" type="search" name="name" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+        
+    </nav>
+
+
+
+
+<div class="container col-md-8 text-center">
+   <table class="table table-danger">
+      <tr>
+         <th colspan="4" class="h1 text-uppercase text-success">
+            gundam List
+         </th>
+      </tr>
+      <tr>
+         <th>
+            <a class="btn btn-primary" href="/gundams/add">Add</a>
+         </th>
+         <th colspan="2">
+            <form action="/gundams/search" method="post">
+               <div class="form-group">
+                  <input class="form-control" type="search" placeholder="Search by Product's name" name="name" id=""
+                     required>
+               </div>
+            </form>
+         </th>
+         <th colspan="2">
+            <select class="form-control" name="sort" id="" onchange="window.location.href=this.value">
+               <option value="#">Sort by</option>
+               <option value="/gundams/nameasc">Name asc</option>
+               <option value="/gundams/namedesc">Name desc</option>
+            </select>
+         </th>
+      </tr>
+      <tr>
+         <th>Product Name</th>
+         <th>Date of Manufactory</th>
+         <th>Product Image</th>
+         <th>Menu</th>
+      </tr>
+      {{#each gundams }}
+      <tr>
+         <td>{{ name }}</td>
+         <td>{{ dateFormat dom "DD/MM/YYYY" }}</td>
+         <td><a href="/gundams/detail/{{_id}}">
+            <img src="{{ image }}" width="150" height="150">
+            </a>
+         </td>
+         <td>
+            <a class="btn btn-warning" href="/gundams/edit/{{ _id }}">Edit</a>
+            <a class="btn btn-danger" href="/gundams/delete/{{ _id }}"
+            onclick="return confirm('Are you sure you want to delete?')"
+            >Delete</a>
+         </td>
+      </tr>
+      {{/each}}
+   </table>
+</div>
+
+
+
